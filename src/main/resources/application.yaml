@@ -1,0 +1,19 @@
+#spring:
+#  application:
+#    name: MultiRestaurant Management API
+  spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5032/multirestaurant_db
+      username: multirestaurant_user
+      password: adm1996
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        initializationFailTimeout: 60000
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+
+  server:
+    port: 8081
