@@ -2,7 +2,10 @@ package com.multirestaurant.managementapi.application.usecase.restaurantUseCase;
 import com.multirestaurant.managementapi.domain.gateway.RestaurantGateway;
 import com.multirestaurant.managementapi.domain.model.Restaurant;
 import com.multirestaurant.managementapi.domain.exception.restaurant.RestaurantNotFoundException;
+import org.springframework.stereotype.Service;
+
 import java.util.Optional;
+@Service
 public class DeleteRestaurantUseCase {
         private final RestaurantGateway restaurantGateway;
         public DeleteRestaurantUseCase(RestaurantGateway restaurantGateway) {

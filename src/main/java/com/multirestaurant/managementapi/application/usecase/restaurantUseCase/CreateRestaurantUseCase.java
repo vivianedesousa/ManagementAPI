@@ -5,7 +5,9 @@ import com.multirestaurant.managementapi.domain.gateway.UserGateway;
 import com.multirestaurant.managementapi.domain.model.Restaurant;
 import com.multirestaurant.managementapi.domain.model.User;
 import com.multirestaurant.managementapi.domain.exception.user.UserNotFoundException;
+import org.springframework.stereotype.Service;
 import java.util.Optional;
+@Service
 public class CreateRestaurantUseCase {
         private final RestaurantGateway restaurantGateway;
         private final UserGateway userGateway;

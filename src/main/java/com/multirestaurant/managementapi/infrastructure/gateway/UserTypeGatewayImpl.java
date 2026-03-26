@@ -4,9 +4,11 @@ import com.multirestaurant.managementapi.domain.model.UserType;
 import com.multirestaurant.managementapi.infrastructure.mapper.UserTypeMapper;
 import com.multirestaurant.managementapi.infrastructure.persistence.repository.UserTypeJpaRepository;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
  // esta camada fala com DB
+ //@Component // trocado  para repository
  @Component
 public class UserTypeGatewayImpl implements UserTypeGateway {
      private final UserTypeJpaRepository repository;

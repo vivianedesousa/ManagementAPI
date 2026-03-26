@@ -1,8 +1,12 @@
 package com.multirestaurant.managementapi.controller;
 import com.multirestaurant.managementapi.application.dto.usertype.UserTypeResponseDTO;
 import com .multirestaurant.managementapi.application.usecase.usertypeUseCase.*;
+import com.multirestaurant.managementapi.domain.model.UserType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.multirestaurant.managementapi.application.mapper.dto.UserTypeResponseMapperDTO;
+
+import java.util.ArrayList;
 import java.util.List;
   // "O controller recebe requisições e retorna DTOs, " +
     //       "o use case executa a lógica de negócio, " +
@@ -19,7 +23,7 @@ public class UserTypeController {
         private final FindAllUserTypesUseCase findAllUseCase;
         private final FindUserTypeByIdUseCase findByIdUseCase;
         private final FindUserTypeByNameUseCase findByNameUseCase;
-        private final UserTypeResponseMapperDTO mapper;
+        private final UserTypeResponseMapperDTO userTypeResponseMapperDTO;
 
         public UserTypeController(
                 FindAllUserTypesUseCase findAllUseCase,
@@ -30,22 +34,24 @@ public class UserTypeController {
             this.findAllUseCase = findAllUseCase;
             this.findByIdUseCase = findByIdUseCase;
             this.findByNameUseCase = findByNameUseCase;
-            this.mapper = mapper;
+            this.userTypeResponseMapperDTO = mapper;
         }
 
-        // GET /user-types
+        // GET /user-types   foi mudando tbm
         @GetMapping
-        public List<UserTypeResponseDTO> findAll() {
-            return findAllUseCase.list()
-                    .stream()
-                    .map(mapper::toResponse)
-                    .toList();
+        public ResponseEntity<List<UserTypeResponseDTO>> findAll() {
+            List<UserType> userTypes = findAllUseCase.list();
+            List<UserTypeResponseDTO> response = new ArrayList<>();
+            for (UserType userType : userTypes) {
+                response.add(userTypeResponseMapperDTO.toResponse(userType));
+            }
+            return ResponseEntity.ok(response);
         }
 
         // GET /user-types/{id}
         @GetMapping("/{id}")
         public UserTypeResponseDTO findById(@PathVariable Long id) {
-            return mapper.toResponse(
+            return userTypeResponseMapperDTO.toResponse(
                     findByIdUseCase.execute(id)
             );
         }
@@ -53,7 +59,7 @@ public class UserTypeController {
         // GET /user-types/name/{name}
         @GetMapping("/name/{name}")
         public UserTypeResponseDTO findByName(@PathVariable String name) {
-            return mapper.toResponse(
+            return userTypeResponseMapperDTO.toResponse(
                     findByNameUseCase.execute(name)
             );
         }

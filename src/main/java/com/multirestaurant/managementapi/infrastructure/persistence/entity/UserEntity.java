@@ -1,7 +1,15 @@
 package com.multirestaurant.managementapi.infrastructure.persistence.entity;
 import jakarta.persistence.*;
+
 // entidade representa a tabela no banco e define o relacionamento entre " +
 //   /usuário e tipo de usuário.
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 @Entity
 @Table(name = "users")
 public class UserEntity {

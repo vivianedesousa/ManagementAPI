@@ -8,7 +8,12 @@ import com.multirestaurant.managementapi.application.usecase.UserCase.FindAllUse
 import com.multirestaurant.managementapi.application.usecase.UserCase.UpdateUserUseCase;
 import com.multirestaurant.managementapi.application.usecase.UserCase.FindUserByIdUseCase;
 import com.multirestaurant.managementapi.application.dto.user.UpdateUserRequestDTO;
+import com.multirestaurant.managementapi.domain.model.User;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 //Controller → expõe API
 //Controller → DTO → UseCase → Domain → Gateway → Infra → DB
@@ -37,53 +42,60 @@ public class UserController {
         this.deleteUseCase = deleteUseCase;
         this.userResponseMapperDTO = userResponseMapperDTO;
     }
-
+    // CREATE
     @PostMapping
-    public UserResponseDTO create(@RequestBody CreateUserRequestDTO request) {
+    public ResponseEntity<UserResponseDTO> create(@RequestBody CreateUserRequestDTO request) {
 
-        return userResponseMapperDTO.toResponse(
-                createUseCase.execute(
-                        request.getName(),
-                        request.getEmail(),
-                        request.getUserType()
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                userResponseMapperDTO.toResponse(
+                        createUseCase.execute(
+                                request.getName(),
+                                request.getEmail(),
+                                request.getUserType()
+                        )
                 )
         );
     }
 
     // GET ALL
     @GetMapping
-    public List<UserResponseDTO> findAll() {
-        return findAllUseCase.execute()
-                .stream()
-                .map(userResponseMapperDTO ::toResponse)
-                .toList();
-    }
+    public ResponseEntity<List<UserResponseDTO>> findAll() {
 
+        List<User> users = findAllUseCase.execute();
+        List<UserResponseDTO> response = new ArrayList<>();
+        for (User u : users) {
+            response.add(userResponseMapperDTO.toResponse(u));
+        }
+        return ResponseEntity.ok(response);
+    }
     // GET BY ID
     @GetMapping("/{id}")
-    public UserResponseDTO findById(@PathVariable Long id) {
-        return userResponseMapperDTO.toResponse(
-                findByIdUseCase.execute(id)
-        );
-    }
+    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
 
-    // PUT
-    @PutMapping("/{id}")
-    public UserResponseDTO update(@PathVariable Long id,
-                                  @RequestBody UpdateUserRequestDTO request) {
-
-        return userResponseMapperDTO.toResponse(
-                updateUseCase.execute(
-                        id,
-                        request.getName(),
-                        request.getEmail()
+        return ResponseEntity.ok(
+                userResponseMapperDTO.toResponse(
+                        findByIdUseCase.execute(id)
                 )
         );
     }
-
+   // put
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponseDTO> update(@PathVariable Long id,
+                                                  @RequestBody UpdateUserRequestDTO request) {
+        return ResponseEntity.ok(
+                userResponseMapperDTO.toResponse(
+                        updateUseCase.execute(
+                                id,
+                                request.getName(),
+                                request.getEmail()
+                        )
+                )
+        );
+    }
     // DELETE
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         deleteUseCase.execute(id);
-    }
-}
+        return ResponseEntity.noContent().build();
+}  }
+

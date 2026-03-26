@@ -1,8 +1,8 @@
 package com.multirestaurant.managementapi.domain.model;
 import com .multirestaurant.managementapi.domain.exception.usertype.InvalidUserTypeNameException;
 import java.util.UUID;
-// professor nao GETTERS ANS setters
-// aqui na modelo de Dominio (regras)
+//professor nao GETTERS ANS setters
+//aqui na modelo de Dominio (regras)
 public class UserType {
   public static final String CUSTOMER = "customer";
   public static final String RESTAURANT_OWNER = "restaurant_owner";

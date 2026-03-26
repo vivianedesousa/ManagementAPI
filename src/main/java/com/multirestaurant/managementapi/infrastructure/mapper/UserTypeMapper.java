@@ -1,11 +1,12 @@
 package com.multirestaurant.managementapi.infrastructure.mapper;
- //tratutor das camadas  entre o meu modelo de negocio de Dominio(MODEL=userType)
- //Domian (USERTYPE) da  camada infra Entity (UsertypeEntity)  converte e virse versa
 import com.multirestaurant.managementapi.domain.model.UserType;
 import com.multirestaurant.managementapi.infrastructure.persistence.entity.UserTypeEntity;
 import org.springframework.stereotype.Component;
 // @ Component Classe devera ser gerenciado pelo Core container do Spring
+//tratutor das camadas  entre o meu modelo de negocio de Dominio(MODEL=userType)
+//Domian (USERTYPE) da  camada infra Entity (UsertypeEntity)  converte e virse versa
 @Component
+
 public class UserTypeMapper{
 //    Domain → Entity (salvar no banco)
 //    UserType → UserTypeEntity → Banco
@@ -18,9 +19,8 @@ public class UserTypeMapper{
       entity.setName(userType.name());
       return entity;
   }
-//      entity.setId(userType.identity());
-//      entity.setName(userType.name());
-
+   // entity.setId(userType.identity());
+   //entity.setName(userType.name());
    // Entity → Domain (buscar do banco) Banco → UserTypeEntity → UserType
     //Banco → UserTypeEntity → PARA  UserType
     // RETORNADO

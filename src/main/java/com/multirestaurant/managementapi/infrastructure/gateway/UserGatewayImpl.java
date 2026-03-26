@@ -5,13 +5,14 @@ import com.multirestaurant.managementapi.infrastructure.persistence.repository.U
 import com.multirestaurant.managementapi.domain.model.User;
 import com.multirestaurant.managementapi.infrastructure.persistence.entity.UserEntity;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Optional;
  //"O GatewayImpl realiza a comunicação com o banco através do repository e utiliza o mapper para
  // converter entre domínio e entidade."
+//@Component  retirado trocado para repository
 @Component
 public class UserGatewayImpl implements UserGateway {
-
     private final UserJpaRepository repository;
     private final UserMapper userMapper;
 
