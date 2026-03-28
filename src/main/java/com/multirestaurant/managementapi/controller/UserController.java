@@ -18,7 +18,7 @@ import java.util.List;
 //Controller → expõe API
 //Controller → DTO → UseCase → Domain → Gateway → Infra → DB
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
     private final CreateUserUseCase createUseCase;
     private final FindUserByIdUseCase findByIdUseCase;
@@ -45,7 +45,6 @@ public class UserController {
     // CREATE
     @PostMapping
     public ResponseEntity<UserResponseDTO> create(@RequestBody CreateUserRequestDTO request) {
-
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 userResponseMapperDTO.toResponse(
                         createUseCase.execute(
@@ -78,7 +77,7 @@ public class UserController {
                 )
         );
     }
-   // put
+   //
     @PutMapping("/{id}")
     public ResponseEntity<UserResponseDTO> update(@PathVariable Long id,
                                                   @RequestBody UpdateUserRequestDTO request) {

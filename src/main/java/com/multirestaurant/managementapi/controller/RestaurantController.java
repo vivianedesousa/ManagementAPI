@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/restaurants")
+@RequestMapping("/api/v1/restaurants")
 public class RestaurantController {
     private final RestaurantResponseMapperDTO restaurantResponseMapperDTO;
     private final CreateRestaurantUseCase createRestaurantUseCase;
@@ -32,6 +32,7 @@ public class RestaurantController {
         this.deleteUseCase = deleteUseCase;
         this.restaurantResponseMapperDTO = restaurantResponseMapperDTO;
     }
+
     //CREATE
     @PostMapping
     public ResponseEntity<RestaurantResponseDTO> create(
@@ -46,6 +47,7 @@ public class RestaurantController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(restaurantResponseMapperDTO.toResponse(restaurant));
     }
+
     // FIND ALL
     @GetMapping
     public ResponseEntity<List<RestaurantResponseDTO>> findAll() {
@@ -56,6 +58,7 @@ public class RestaurantController {
         }
         return ResponseEntity.ok(response);
     }
+
     // FIND BY ID
     @GetMapping("/{id}")
     public ResponseEntity<RestaurantResponseDTO> findById(@PathVariable Long id) {
@@ -64,6 +67,7 @@ public class RestaurantController {
                 restaurantResponseMapperDTO.toResponse(restaurant)
         );
     }
+
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {

@@ -18,7 +18,7 @@ import java.util.List;
 // “O controller recebe os dados via DTO, o use case executa a lógica de negócio,
 // o domínio valida as regras e o gateway persiste os dados.”
 @RestController
-@RequestMapping("/user-types")
+@RequestMapping("/api/v1/user-types")
 public class UserTypeController {
         private final FindAllUserTypesUseCase findAllUseCase;
         private final FindUserTypeByIdUseCase findByIdUseCase;

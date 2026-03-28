@@ -27,6 +27,7 @@ public class UserTypeGatewayImpl implements UserTypeGateway {
                  .map(userTypeMapper::toDomain)
                  .toList();
      }
+
      // select from* id e transforma essa lista e optinal
      @Override
      public Optional<UserType> findById(Long id) {
@@ -36,8 +37,9 @@ public class UserTypeGatewayImpl implements UserTypeGateway {
 
      @Override
      public Optional<UserType> findByName(String name) {
-         return repository.findByName(name)
-           .map(userTypeMapper::toDomain);
+         ////  return repository.findByName(name)
+         return repository.findByNameIgnoreCase(name)
+                 .map(userTypeMapper::toDomain);
      }
-}
+ }
 

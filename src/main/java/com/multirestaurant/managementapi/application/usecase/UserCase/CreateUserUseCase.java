@@ -5,7 +5,7 @@ import com.multirestaurant.managementapi.domain.gateway.UserGateway;
 import com.multirestaurant.managementapi.domain.gateway.UserTypeGateway;
 import com.multirestaurant.managementapi.domain.model.User;
 import com.multirestaurant.managementapi.domain.model.UserType;
-import org.springframework.stereotype.Service;;
+import org.springframework.stereotype.Service;
 import java.util.Optional;
 // sua regra e criar usuário + associar UserType
 @Service

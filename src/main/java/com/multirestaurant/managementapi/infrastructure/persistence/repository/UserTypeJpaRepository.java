@@ -7,5 +7,6 @@ import java.util.Optional;
 @Repository
 public interface UserTypeJpaRepository extends JpaRepository<UserTypeEntity,Long > {
     // O spring ja criar automaticamneto os mesto do CRUD
-    Optional<UserTypeEntity> findByName(String name);
+   // Optional<UserTypeEntity> findByName(String name);
+    Optional<UserTypeEntity> findByNameIgnoreCase(String name);
 }

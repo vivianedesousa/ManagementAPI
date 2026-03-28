@@ -30,7 +30,7 @@ public class UserGatewayImpl implements UserGateway {
         return userMapper.toDomain(saved);
     }
 
-    // READ ALL
+    // READ ALL muda aqui
     @Override
     public List<User> findAll() {
         return repository.findAll()

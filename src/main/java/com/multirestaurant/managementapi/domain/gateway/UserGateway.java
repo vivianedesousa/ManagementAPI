@@ -7,7 +7,6 @@ public interface UserGateway {
     User save(User user);
     List<User> findAll();
     Optional<User> findById(Long id);
-  // para evitar null e obrigar tratar se nao ter valor  nao estourar um EXC
     Optional<User> findByEmail(String email); // ⭐ opcional
     void deleteById(Long id);
 }
