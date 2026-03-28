@@ -1,5 +1,6 @@
 package com.multirestaurant.managementapi.domain.model;
 import com.multirestaurant.managementapi.domain.exception.restaurant.InvalidRestaurantException;
+
 public class Restaurant {
         private final Long id;
         private final String name;
